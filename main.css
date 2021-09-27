@@ -1,0 +1,26 @@
+body {
+  background-color: azure;
+}
+#question {
+  color: red;
+  display: flex;
+  justify-content: center;
+  margin-left: 45px;
+}
+li {
+    display: flex;
+    justify-content: center;
+}
+#Start {
+  border-radius: 20px;
+  margin: 200px 200px 200px 200px;
+}
+
+#highscore {
+  position: relative;
+  left: 500px;
+  color: rosybrown;
+  bottom: 150px;
+  display: flex;
+  justify-content: center;
+}
