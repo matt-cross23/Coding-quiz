@@ -1,5 +1,3 @@
-console.log("I'm connected");
-//Use this to select the button to start quiz//
 var startB = document.querySelector("#start");
 var timerEl = document.querySelector("#seconds");
 var questions = document.getElementById("questions");
@@ -10,9 +8,11 @@ var answerButton3 = document.getElementById("answerButton3");
 var answerButton4 = document.getElementById("answerButton4");
 var answers = document.getElementById("answer");
 var questionIndex = 0;
-// var youreCorrect = document.createElement(right);
-// youreCorrect.textContent = "Youre Correct!";
-// document.body.appendChild(youreCorrect);
+var score = 0;
+var timeLost = 150;
+
+var questionIndex = 0;
+
 var timer;
 var secondsLeft = 300;
 var questionsList = [
@@ -23,23 +23,38 @@ var questionsList = [
   },
   {
     question: "Inside which HTML element do we put the JavaScript?",
-    choices: ["<script", "<javascript>", "<js>", "Either A or B"],
-    correctAnswer: ".",
+    choices: ["<script>", "<javascript>", "<js>", "Either A or B"],
+    correctAnswer: "<script>",
   },
   {
     question: "Where is the correct place to insert a JavaScript?",
-    choices: ["The <body> section", "The <head> section", "None of the above", "Either A or B"],
-    correctAnswer: ".",
+    choices: [
+      "The <body> section",
+      "The <head> section",
+      "None of the above",
+      "Either A or B",
+    ],
+    correctAnswer: "The <body> section",
   },
   {
     question: "How do you create a function in JavaScript",
-    choices: ["function functionx()", "createFunction = ", "None of the above", "Either A or B"],
-    correctAnswer: ".",
+    choices: [
+      "function functionx()",
+      "createFunction = ",
+      "None of the above",
+      "Either A or B",
+    ],
+    correctAnswer: "function functionx()",
   },
   {
     question: "How to write an IF statement in JavaScript?",
-    choices: ["if (i == true)", "if i = true then", "None of the above", "Either A or B"],
-    correctAnswer: ".",
+    choices: [
+      "if (i == true)",
+      "if i = true then",
+      "None of the above",
+      "Either A or B",
+    ],
+    correctAnswer: "if (i == true)",
   },
 ];
 
@@ -51,30 +66,88 @@ function displayCurrentQuestion() {
   answerButton2.textContent = questionsList[i].choices[1];
   answerButton3.textContent = questionsList[i].choices[2];
   answerButton4.textContent = questionsList[i].choices[3];
-  answerButton4.textContent = questionsList[i].choices[4];
-  answerButton4.textContent = questionsList[i].choices[5];
+
 }
 
 function checkAnswer() {
   // // check if text content of clicked list item is equal to answer
-  answers.addEventListener("click",
-  function () {      if (questionsList[0] === questionsList.correctAnswer) {
-    console.log("you're correct");
-  } else (answers !== questionsList.correctAnswer);
-  {
-    console.log("you're incorrect");
-    secondsLeft--;
-  }
-},
-50
-);   
-// advance to next question
+  answerButton1.addEventListener(
+    "click",
+    function () {
+      // console.log(answers.textContent)
+      // console.log(questionsList[questionIndex].correctAnswer)
+      if (answerButton1.textContent == questionsList[questionIndex].correctAnswer) {
+        console.log("you're correct");
+      } else
+      {
+        console.log("you're incorrect");
+        secondsLeft - timeLost;
+      }
+    },
+    50
+  );
+  answerButton2.addEventListener(
+    "click",
+    function () {
+      // console.log(answers.textContent)
+      // console.log(questionsList[questionIndex].correctAnswer)
+      if (answerButton2.textContent == questionsList[questionIndex].correctAnswer) {
+       var correct = document.createElement();
+       correct.textContent= "You're Correct";
+       document.body.appendChild(correct);
+       console.log(correct)
+      } else
+      {
+        console.log("you're incorrect");
+        secondsLeft - timeLost;
+        var incorrect = document.createElement();
+        incorrect.textContent= "You're Incorrect";
+        document.body.appendChild(incorrect);
+      }
+    },
+    50
+  );
+  answerButton3.addEventListener(
+    "click",
+    function () {
+      // console.log(answers.textContent)
+      // console.log(questionsList[questionIndex].correctAnswer)
+      if (answerButton3.textContent == questionsList[questionIndex].correctAnswer) {
+        console.log("you're correct");
+      } else
+      {
+        console.log("you're incorrect");
+        secondsLeft - timeLost;
+      }
+    },
+    50
+  );
+  answerButton4.addEventListener(
+    "click",
+    function () {
+      // console.log(answers.textContent)
+      // console.log(questionsList[questionIndex].correctAnswer)
+      if (answerButton4.textContent == questionsList[questionIndex].correctAnswer) {
+        console.log("you're correct");
+      } else
+      {
+        console.log("you're incorrect");
+        secondsLeft - timeLost;
+      }
+    },
+    50
+  );
+
+
+
+
   advanceQuestion();
 }
 
 function advanceQuestion() {
   i++;
   if (i < questionsList.length) {
+    questionIndex++
     displayCurrentQuestion();
   }
 }
@@ -90,14 +163,14 @@ function startQuiz() {
     }
   }, 1000);
 
-  // Hide unhide appropriate elements
   startPage.classList.add("hidden");
 
   questions.classList.remove("hidden");
   displayCurrentQuestion();
 }
-function endGame() {
-  console.log("Game is over");
+function endGame(gameOver) {
+  var gameOver = prompt("The game is over, please enter your initials");
+  gameOver = localStorage.getItem("prompt", gameOver);
 }
 
 //Used to start quiz//
