@@ -77,11 +77,17 @@ function checkAnswer() {
       // console.log(answers.textContent)
       // console.log(questionsList[questionIndex].correctAnswer)
       if (answerButton1.textContent == questionsList[questionIndex].correctAnswer) {
-        console.log("you're correct");
+       console.log("you're correct");
+       var right = document.createElement("p");
+       right.innerHTML= "You're Correct";
+       document.body.appendChild(right);
       } else
       {
         console.log("you're incorrect");
         secondsLeft - timeLost;
+        var wrong = document.createElement("p");
+        wrong.innerHTML= "You're Incorrect";
+        document.body.appendChild(wrong);
       }
     },
     50
@@ -92,16 +98,16 @@ function checkAnswer() {
       // console.log(answers.textContent)
       // console.log(questionsList[questionIndex].correctAnswer)
       if (answerButton2.textContent == questionsList[questionIndex].correctAnswer) {
-       var correct = document.createElement();
-       correct.textContent= "You're Correct";
-       document.body.appendChild(correct);
+       var right = document.createElement("p");
+       right.innerHTML= "You're Correct";
+       document.body.appendChild(right);
        console.log(correct)
       } else
       {
         console.log("you're incorrect");
         secondsLeft - timeLost;
         var wrong = document.createElement("p");
-        wrong.textcontent= "You're Incorrect";
+        wrong.innerHTML= "You're Incorrect";
         document.body.appendChild(wrong);
       }
     },
@@ -114,10 +120,16 @@ function checkAnswer() {
       // console.log(questionsList[questionIndex].correctAnswer)
       if (answerButton3.textContent == questionsList[questionIndex].correctAnswer) {
         console.log("you're correct");
+        var right = document.createElement("p");
+       right.innerHTML= "You're Correct";
+       document.body.appendChild(right);
       } else
       {
         console.log("you're incorrect");
         secondsLeft - timeLost;
+        var wrong = document.createElement("p");
+        wrong.innerHTML= "You're Incorrect";
+        document.body.appendChild(wrong);
       }
     },
     50
@@ -129,10 +141,16 @@ function checkAnswer() {
       // console.log(questionsList[questionIndex].correctAnswer)
       if (answerButton4.textContent == questionsList[questionIndex].correctAnswer) {
         console.log("you're correct");
+       var right = document.createElement("p");
+       right.innerHTML= "You're Correct";
+       document.body.appendChild(right);
       } else
       {
         console.log("you're incorrect");
         secondsLeft - timeLost;
+        var wrong = document.createElement("p");
+        wrong.innerHTML= "You're Incorrect";
+        document.body.appendChild(wrong);
       }
     },
     50
