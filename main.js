@@ -175,7 +175,7 @@ function startQuiz() {
     secondsLeft--;
     timerEl.textContent = secondsLeft + " seconds left";
 
-    if (secondsLeft === 0 || i >= questionsList.length) {
+    if (secondsLeft == 0 || i >= questionsList.length) {
       clearInterval(timer);
       endGame();
     }
@@ -186,7 +186,7 @@ function startQuiz() {
   questions.classList.remove("hidden");
   displayCurrentQuestion();
 }
-function endGame(gameOver) {
+function endGame() {
   var gameOver = prompt("The game is over, please enter your initials");
   gameOver = localStorage.getItem("prompt", gameOver);
 }
