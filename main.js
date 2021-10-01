@@ -100,8 +100,8 @@ function checkAnswer() {
       {
         console.log("you're incorrect");
         secondsLeft - timeLost;
-        var wrong = document.createElement("incorrect");
-        incorrect.textContent= "You're Incorrect";
+        var wrong = document.createElement("p");
+        wrong.textcontent= "You're Incorrect";
         document.body.appendChild(wrong);
       }
     },
