@@ -14,7 +14,7 @@ var timeLost = 150;
 var questionIndex = 0;
 
 var timer;
-var secondsLeft = 300;
+var secondsLeft = 100;
 var questionsList = [
   {
     question: "How do you select a class?",
