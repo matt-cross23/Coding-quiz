@@ -2,19 +2,21 @@ var startB = document.querySelector("#start");
 var timerEl = document.querySelector("#seconds");
 var questions = document.getElementById("questions");
 var startPage = document.getElementById("startpage");
+var endquiz = document.getElementById("endquiz");
 var answerButton1 = document.getElementById("answerButton1");
 var answerButton2 = document.getElementById("answerButton2");
 var answerButton3 = document.getElementById("answerButton3");
 var answerButton4 = document.getElementById("answerButton4");
 var answers = document.getElementById("answer");
 var questionIndex = 0;
-var timeLost = 150;
-var score = "0";
+var timeLost = 75;
+var score = 10;
+var scoring = document.createElement("p");
 
 var questionIndex = 0;
-
+endquiz.classList.add("hidden");
 var timer;
-var secondsLeft = 1000;
+var secondsLeft = 500;
 var questionsList = [
   {
     question: "How do you select a class?",
@@ -60,6 +62,7 @@ var questionsList = [
 
 var i = 0;
 
+
 function displayCurrentQuestion() {
   document.getElementById("question").textContent = questionsList[i].question;
   answerButton1.textContent = questionsList[i].choices[0];
@@ -69,66 +72,6 @@ function displayCurrentQuestion() {
 }
 
 function checkAnswer() {
-  // // check if text content of clicked list item is equal to answer
-  // answerButton1.addEventListener("click", function () {
-  //   if (
-  //     answerButton1.textContent == questionsList[questionIndex].correctAnswer
-  //   ) {
-  //     var right = document.createElement("p");
-  //     right.innerHTML = "You're Correct";
-  //     document.body.appendChild(right);
-  //     score+=20;
-  //   } else {
-  //     secondsLeft = secondsLeft - timeLost;
-  //     var wrong = document.createElement("p");
-  //     wrong.innerHTML = "You're Incorrect";
-  //     document.body.appendChild(wrong);
-  //   }
-  // });
-  // answerButton2.addEventListener("click", function () {
-  //   if (
-  //     answerButton2.textContent == questionsList[questionIndex].correctAnswer
-  //   ) {
-  //     var right = document.createElement("p");
-  //     right.innerHTML = "You're Correct";
-  //     document.body.appendChild(right);
-  //     score+=20;
-  //   } else {
-  //     secondsLeft = secondsLeft - timeLost;
-  //     var wrong = document.createElement("p");
-  //     wrong.innerHTML = "You're Incorrect";
-  //     document.body.appendChild(wrong);
-  //   }
-  // });
-  // answerButton3.addEventListener("click", function () {
-  //   if (
-  //     answerButton3.textContent == questionsList[questionIndex].correctAnswer
-  //   ) {
-  //     var right = document.createElement("p");
-  //     right.innerHTML = "You're Correct";
-  //     document.body.appendChild(right);
-  //   } else {
-  //     secondsLeft = secondsLeft - timeLost;
-  //     var wrong = document.createElement("p");
-  //     wrong.innerHTML = "You're Incorrect";
-  //     document.body.appendChild(wrong);
-  //   }
-  // });
-  // answerButton4.addEventListener("click", function () {
-  //   if (
-  //     answerButton4.textContent == questionsList[questionIndex].correctAnswer
-  //   ) {
-  //     var right = document.createElement("p");
-  //     right.innerHTML = "You're Correct";
-  //     document.body.appendChild(right);
-  //   } else {
-  //     secondsLeft = secondsLeft - timeLost;
-  //     var wrong = document.createElement("p");
-  //     wrong.innerHTML = "You're Incorrect";
-  //     document.body.appendChild(wrong);
-  //   }
-  // });
-
   advanceQuestion();
 }
 
@@ -137,77 +80,77 @@ function advanceQuestion() {
   if (i < questionsList.length) {
     questionIndex++;
     displayCurrentQuestion();
-  }
+}
+else if (i>questionsList.length-1) {
+  clearInterval(timer);
+  endGame();
+}
 }
 
 function startQuiz() {
   timer = setInterval(function () {
     secondsLeft--;
     timerEl.textContent = secondsLeft + " seconds left";
-
-    if (timerEl == 0 || i >= questionsList.length) {
+    if (secondsLeft <= 0) {
       clearInterval(timer);
-      endGame();
+      
+        endGame();
+      }
+
+    
     }
-  }, 1000);
+  , 1000);
 
   startPage.classList.add("hidden");
+  questions.classList.add("hidden");
 
   questions.classList.remove("hidden");
   displayCurrentQuestion();
-  var scoring = document.createElement("p");
-  scoring.innerHTML = "Your Score is: " + score;
-  document.body.appendChild(scoring);
-}
-
-function endGame() {
-  var gameOver = prompt("The game is over, please enter your initials");
-
 }
 
 //Used to start quiz//
 startB.addEventListener("click", startQuiz);
-// answerButton1.addEventListener("click", checkAnswer);
-// answerButton2.addEventListener("click", checkAnswer);
-// answerButton3.addEventListener("click", checkAnswer);
-// answerButton4.addEventListener("click", checkAnswer);
- // check if text content of clicked list item is equal to answer
- answerButton1.addEventListener("click", function () {
-  if (
-    answerButton1.textContent == questionsList[questionIndex].correctAnswer
-  ) {
+answerButton1.addEventListener("click", function () {
+  if (answerButton1.textContent == questionsList[questionIndex].correctAnswer) {
     var right = document.createElement("p");
     right.innerHTML = "You're Correct";
     document.body.appendChild(right);
-    score+=20;
+    var scoring = document.createElement("p");
+    scoring.innerHTML = "Your Score is: " + score;
+    score++;
+    document.body.appendChild(scoring);
   } else {
     secondsLeft = secondsLeft - timeLost;
     var wrong = document.createElement("p");
     wrong.innerHTML = "You're Incorrect";
     document.body.appendChild(wrong);
+    var scoring = document.createElement("p");
+    scoring.innerHTML = "Your Score is: " + score;
+    score--;
+    document.body.appendChild(scoring);
   }
+
   advanceQuestion();
 });
 answerButton2.addEventListener("click", function () {
-  if (
-    answerButton2.textContent == questionsList[questionIndex].correctAnswer
-  ) {
+  if (answerButton2.textContent == questionsList[questionIndex].correctAnswer) {
     var right = document.createElement("p");
     right.innerHTML = "You're Correct";
     document.body.appendChild(right);
-    score+=20;
   } else {
     secondsLeft = secondsLeft - timeLost;
     var wrong = document.createElement("p");
     wrong.innerHTML = "You're Incorrect";
     document.body.appendChild(wrong);
+    var scoring = document.createElement("p");
+    scoring.innerHTML = "Your Score is: " + score;
+    score--;
+    document.body.appendChild(scoring);
   }
   advanceQuestion();
 });
 answerButton3.addEventListener("click", function () {
-  if (
-    answerButton3.textContent == questionsList[questionIndex].correctAnswer
-  ) {
+  if (answerButton3.textContent == questionsList[questionIndex].correctAnswer) {
     var right = document.createElement("p");
     right.innerHTML = "You're Correct";
     document.body.appendChild(right);
@@ -216,13 +159,15 @@ answerButton3.addEventListener("click", function () {
     var wrong = document.createElement("p");
     wrong.innerHTML = "You're Incorrect";
     document.body.appendChild(wrong);
+    var scoring = document.createElement("p");
+    scoring.innerHTML = "Your Score is: " + score;
+    score--;
+    document.body.appendChild(scoring);
   }
   advanceQuestion();
 });
 answerButton4.addEventListener("click", function () {
-  if (
-    answerButton4.textContent == questionsList[questionIndex].correctAnswer
-  ) {
+  if (answerButton4.textContent == questionsList[questionIndex].correctAnswer) {
     var right = document.createElement("p");
     right.innerHTML = "You're Correct";
     document.body.appendChild(right);
@@ -231,6 +176,23 @@ answerButton4.addEventListener("click", function () {
     var wrong = document.createElement("p");
     wrong.innerHTML = "You're Incorrect";
     document.body.appendChild(wrong);
+    var scoring = document.createElement("p");
+    scoring.innerHTML = "Your Score is: " + score;
+    score--;
+    document.body.appendChild(scoring);
   }
   advanceQuestion();
 });
+
+
+function endGame() {
+  var quizOver= document.createElement("H3");
+  quizOver.innerHTML = "Quiz Over!!"
+  console.log(score);
+  questions.classList.add("hidden");
+  endquiz.classList.remove("hidden");
+  startPage.classList.add("hidden");
+
+ 
+
+}
