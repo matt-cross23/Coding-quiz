@@ -8,13 +8,13 @@ var answerButton3 = document.getElementById("answerButton3");
 var answerButton4 = document.getElementById("answerButton4");
 var answers = document.getElementById("answer");
 var questionIndex = 0;
-var score = 0;
 var timeLost = 150;
+var score = "0";
 
 var questionIndex = 0;
 
 var timer;
-var secondsLeft = 100;
+var secondsLeft = 1000;
 var questionsList = [
   {
     question: "How do you select a class?",
@@ -37,7 +37,7 @@ var questionsList = [
     correctAnswer: "The <body> section",
   },
   {
-    question: "How do you create a function in JavaScript",
+    question: "How do you create a function in JavaScript?",
     choices: [
       "function functionx()",
       "createFunction = ",
@@ -66,98 +66,68 @@ function displayCurrentQuestion() {
   answerButton2.textContent = questionsList[i].choices[1];
   answerButton3.textContent = questionsList[i].choices[2];
   answerButton4.textContent = questionsList[i].choices[3];
-
 }
 
 function checkAnswer() {
   // // check if text content of clicked list item is equal to answer
-  answerButton1.addEventListener(
-    "click",
-    function () {
-      // console.log(answers.textContent)
-      // console.log(questionsList[questionIndex].correctAnswer)
-      if (answerButton1.textContent == questionsList[questionIndex].correctAnswer) {
-       console.log("you're correct");
-       var right = document.createElement("p");
-       right.innerHTML= "You're Correct";
-       document.body.appendChild(right);
-      } else
-      {
-        console.log("you're incorrect");
-        secondsLeft - timeLost;
-        var wrong = document.createElement("p");
-        wrong.innerHTML= "You're Incorrect";
-        document.body.appendChild(wrong);
-      }
-    },
-    50
-  );
-  answerButton2.addEventListener(
-    "click",
-    function () {
-      // console.log(answers.textContent)
-      // console.log(questionsList[questionIndex].correctAnswer)
-      if (answerButton2.textContent == questionsList[questionIndex].correctAnswer) {
-       var right = document.createElement("p");
-       right.innerHTML= "You're Correct";
-       document.body.appendChild(right);
-       console.log(correct)
-      } else
-      {
-        console.log("you're incorrect");
-        secondsLeft - timeLost;
-        var wrong = document.createElement("p");
-        wrong.innerHTML= "You're Incorrect";
-        document.body.appendChild(wrong);
-      }
-    },
-    50
-  );
-  answerButton3.addEventListener(
-    "click",
-    function () {
-      // console.log(answers.textContent)
-      // console.log(questionsList[questionIndex].correctAnswer)
-      if (answerButton3.textContent == questionsList[questionIndex].correctAnswer) {
-        console.log("you're correct");
-        var right = document.createElement("p");
-       right.innerHTML= "You're Correct";
-       document.body.appendChild(right);
-      } else
-      {
-        console.log("you're incorrect");
-        secondsLeft - timeLost;
-        var wrong = document.createElement("p");
-        wrong.innerHTML= "You're Incorrect";
-        document.body.appendChild(wrong);
-      }
-    },
-    50
-  );
-  answerButton4.addEventListener(
-    "click",
-    function () {
-      // console.log(answers.textContent)
-      // console.log(questionsList[questionIndex].correctAnswer)
-      if (answerButton4.textContent == questionsList[questionIndex].correctAnswer) {
-        console.log("you're correct");
-       var right = document.createElement("p");
-       right.innerHTML= "You're Correct";
-       document.body.appendChild(right);
-      } else
-      {
-        console.log("you're incorrect");
-        secondsLeft - timeLost;
-        var wrong = document.createElement("p");
-        wrong.innerHTML= "You're Incorrect";
-        document.body.appendChild(wrong);
-      }
-    },
-    50
-  );
-
-
-
+  // answerButton1.addEventListener("click", function () {
+  //   if (
+  //     answerButton1.textContent == questionsList[questionIndex].correctAnswer
+  //   ) {
+  //     var right = document.createElement("p");
+  //     right.innerHTML = "You're Correct";
+  //     document.body.appendChild(right);
+  //     score+=20;
+  //   } else {
+  //     secondsLeft = secondsLeft - timeLost;
+  //     var wrong = document.createElement("p");
+  //     wrong.innerHTML = "You're Incorrect";
+  //     document.body.appendChild(wrong);
+  //   }
+  // });
+  // answerButton2.addEventListener("click", function () {
+  //   if (
+  //     answerButton2.textContent == questionsList[questionIndex].correctAnswer
+  //   ) {
+  //     var right = document.createElement("p");
+  //     right.innerHTML = "You're Correct";
+  //     document.body.appendChild(right);
+  //     score+=20;
+  //   } else {
+  //     secondsLeft = secondsLeft - timeLost;
+  //     var wrong = document.createElement("p");
+  //     wrong.innerHTML = "You're Incorrect";
+  //     document.body.appendChild(wrong);
+  //   }
+  // });
+  // answerButton3.addEventListener("click", function () {
+  //   if (
+  //     answerButton3.textContent == questionsList[questionIndex].correctAnswer
+  //   ) {
+  //     var right = document.createElement("p");
+  //     right.innerHTML = "You're Correct";
+  //     document.body.appendChild(right);
+  //   } else {
+  //     secondsLeft = secondsLeft - timeLost;
+  //     var wrong = document.createElement("p");
+  //     wrong.innerHTML = "You're Incorrect";
+  //     document.body.appendChild(wrong);
+  //   }
+  // });
+  // answerButton4.addEventListener("click", function () {
+  //   if (
+  //     answerButton4.textContent == questionsList[questionIndex].correctAnswer
+  //   ) {
+  //     var right = document.createElement("p");
+  //     right.innerHTML = "You're Correct";
+  //     document.body.appendChild(right);
+  //   } else {
+  //     secondsLeft = secondsLeft - timeLost;
+  //     var wrong = document.createElement("p");
+  //     wrong.innerHTML = "You're Incorrect";
+  //     document.body.appendChild(wrong);
+  //   }
+  // });
 
   advanceQuestion();
 }
@@ -165,7 +135,7 @@ function checkAnswer() {
 function advanceQuestion() {
   i++;
   if (i < questionsList.length) {
-    questionIndex++
+    questionIndex++;
     displayCurrentQuestion();
   }
 }
@@ -175,7 +145,7 @@ function startQuiz() {
     secondsLeft--;
     timerEl.textContent = secondsLeft + " seconds left";
 
-    if (secondsLeft == 0 || i >= questionsList.length) {
+    if (timerEl == 0 || i >= questionsList.length) {
       clearInterval(timer);
       endGame();
     }
@@ -185,15 +155,82 @@ function startQuiz() {
 
   questions.classList.remove("hidden");
   displayCurrentQuestion();
+  var scoring = document.createElement("p");
+  scoring.innerHTML = "Your Score is: " + score;
+  document.body.appendChild(scoring);
 }
+
 function endGame() {
   var gameOver = prompt("The game is over, please enter your initials");
-  gameOver = localStorage.getItem("prompt", gameOver);
+
 }
 
 //Used to start quiz//
 startB.addEventListener("click", startQuiz);
-answerButton1.addEventListener("click", checkAnswer);
-answerButton2.addEventListener("click", checkAnswer);
-answerButton3.addEventListener("click", checkAnswer);
-answerButton4.addEventListener("click", checkAnswer);
+// answerButton1.addEventListener("click", checkAnswer);
+// answerButton2.addEventListener("click", checkAnswer);
+// answerButton3.addEventListener("click", checkAnswer);
+// answerButton4.addEventListener("click", checkAnswer);
+ // check if text content of clicked list item is equal to answer
+ answerButton1.addEventListener("click", function () {
+  if (
+    answerButton1.textContent == questionsList[questionIndex].correctAnswer
+  ) {
+    var right = document.createElement("p");
+    right.innerHTML = "You're Correct";
+    document.body.appendChild(right);
+    score+=20;
+  } else {
+    secondsLeft = secondsLeft - timeLost;
+    var wrong = document.createElement("p");
+    wrong.innerHTML = "You're Incorrect";
+    document.body.appendChild(wrong);
+  }
+  advanceQuestion();
+});
+answerButton2.addEventListener("click", function () {
+  if (
+    answerButton2.textContent == questionsList[questionIndex].correctAnswer
+  ) {
+    var right = document.createElement("p");
+    right.innerHTML = "You're Correct";
+    document.body.appendChild(right);
+    score+=20;
+  } else {
+    secondsLeft = secondsLeft - timeLost;
+    var wrong = document.createElement("p");
+    wrong.innerHTML = "You're Incorrect";
+    document.body.appendChild(wrong);
+  }
+  advanceQuestion();
+});
+answerButton3.addEventListener("click", function () {
+  if (
+    answerButton3.textContent == questionsList[questionIndex].correctAnswer
+  ) {
+    var right = document.createElement("p");
+    right.innerHTML = "You're Correct";
+    document.body.appendChild(right);
+  } else {
+    secondsLeft = secondsLeft - timeLost;
+    var wrong = document.createElement("p");
+    wrong.innerHTML = "You're Incorrect";
+    document.body.appendChild(wrong);
+  }
+  advanceQuestion();
+});
+answerButton4.addEventListener("click", function () {
+  if (
+    answerButton4.textContent == questionsList[questionIndex].correctAnswer
+  ) {
+    var right = document.createElement("p");
+    right.innerHTML = "You're Correct";
+    document.body.appendChild(right);
+  } else {
+    secondsLeft = secondsLeft - timeLost;
+    var wrong = document.createElement("p");
+    wrong.innerHTML = "You're Incorrect";
+    document.body.appendChild(wrong);
+  }
+  advanceQuestion();
+});
